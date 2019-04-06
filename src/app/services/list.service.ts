@@ -15,13 +15,16 @@ const httpOptions = {
 
 export class ListService {
   getList(arg0: string): any {
-    throw new Error("Method not implemented.");
+
   }
 
   constructor(private http: HttpClient) { }
 
   getVGA():Observable<any>{
     return this.http.get(URL_API,httpOptions);
+  }
+  getSkins(qualidade?):Observable<any>{
+    return this.http.get(`${URL_API}${qualidade}`,httpOptions);
   }
 
   getVGADetails(id:string):Observable<any>{

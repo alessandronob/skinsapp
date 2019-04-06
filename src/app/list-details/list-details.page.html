@@ -10,7 +10,7 @@
 <ion-content>
   <ion-card class="welcome-card">
     <ion-card-header>
-      <ion-card-subtitle>tipo: <ion-note *ngFor='let g of movie.genres'>{{g.name}}</ion-note></ion-card-subtitle>
+      <ion-card-subtitle>tipo: <ion-note *ngFor='let g of list.genres'>{{g.name}}</ion-note></ion-card-subtitle>
       <ion-card-title class="text-center">{{list.title}}</ion-card-title>
       <ion-item>
         <ion-label>Avaliação</ion-label>
@@ -26,11 +26,10 @@
       </ion-item>
     </ion-card-header>
     <ion-card-content>
-      <div *ngFor="let p of movie.production_companies">
-        <ion-img *ngIf="p.logo_path" src="https://image.tmdb.org/t/p/w500/{{p.logo_path}}"></ion-img>
+      <div *ngFor="let p of list.production_companies">
         <p *ngIf="!p.logo_path">{{p.name}}</p>
       </div>
-      <p class="mt-5">{{list.overview}}</p>
+      <p class="mt-5">{{list.skins}}</p>
     </ion-card-content>
   </ion-card>
 </ion-content>

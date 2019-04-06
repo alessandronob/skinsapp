@@ -14,23 +14,32 @@ export class ListPage implements OnInit {
   param:any;
   id:any;
   skins: [];
+  private qualidade_name:string ;
+  private arrayCategory = ["Oculto", "Secreto", "Restrito", "Militar", "Nivel Militar"];
+    
+  
+  constructor(private listServices: ListService, private loadingController: LoadingController){}
 
-  constructor(private mDBServices: ListService, private loadingController: LoadingController){}
+
 
   ngOnInit() {
-    this.consultaVGA();
+    this.consultaSkins();
   }
 
-  async consultaVGA(){
-  const loading = await this.loadingController.create({
-    message: 'Carregando ...'
-  });
+  async consultaSkins(index?){
+    if (typeof index === 'undefined') index = 3;
+
+    // Define o parametro a ser passado
+    let param = (typeof this.qualidade_name === "undefined") ? `?qualidade=${this.arrayCategory[index]}` : `?qualidade=${this.qualidade_name}`;
+    const loading = await this.loadingController.create({
+      message: 'Carregando ...'
+    });
  
 
   await loading.present();
   
 
-  await this.mDBServices.getVGA().subscribe(
+  await this.listServices.getSkins(param).subscribe(
     data=>{
       this.skins = data;
       loading.dismiss();
